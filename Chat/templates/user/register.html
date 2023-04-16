@@ -14,7 +14,7 @@
         <div class="card p-5">
             <h2> Create a Account!</h2><hr>
             
-            <form action="{% url 'register' %}" method="post">
+            <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}    
                 <div class="form-group mb-2">
                     <label for="email">Email</label>
@@ -27,6 +27,10 @@
                 <div class="form-group mb-3">
                     <label for="password">Password</label>
                     <input type="password" name="password" class="form-control mt-2" placeholder="Password">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="pfp">Profile Picture</label>
+                    <input type="image" name="pfp" class="form-control mt-2" placeholder="Enter Profile Picture">
                 </div>
                 <input type="submit" value="Register!" class="btn btn-outline-primary col-12 mb-3">
                 <h4>Already Registered? <a href='{% url "login" %}'>Login</a></h4>

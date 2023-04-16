@@ -1,0 +1,50 @@
+{% extends 'master/master.html' %}
+
+{% block title %}
+Chat History
+{% endblock %}
+
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/design.css' %}"></link>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'body' %}">Send Messages</a></li>
+          <li class="breadcrumb-item active"> History</li>
+        </ol>
+      </nav>
+</div>
+<hr>
+
+<div class="card p-3">
+    <div class="chat-body">
+      <div class="message">
+        <div class="avatar">
+          <img src="{% static 'media/lumine.jpg' %}" width="400" height="200">
+        </div>
+        <div class="message-content">
+          <div class="message-header">
+            <div class="username">
+            </div>
+          </div>
+          <div class="message-text">
+            <h2>
+              {% for val in message %}
+                History: {{ val }}
+                <hr>
+              {% endfor %}
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

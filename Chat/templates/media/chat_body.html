@@ -1,15 +1,28 @@
 {% extends 'master/master.html' %}
 
+{% block title %}
+Chat  Body
+{% endblock %}
 
-<hr>
 {% load static %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/design.css' %}"></link>
 {% endblock %}
 
 
+
+
 {% block content %}
+<div class="container">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'history' %}">History</a></li>
+    <li class="breadcrumb-item active"> Send Messages </li>
+  </ol>
+</nav>
+</div>
 <hr>
+
 <div class="card p-3">
   <div class="chat-body">
     <div class="message">
@@ -18,15 +31,21 @@
       </div>
       <div class="message-content">
         <div class="message-header">
-          <div class="username">User 1</div>
+          <div class="username"><h2>
+            User: {{data}}
+          </h2></div>
         </div>
-        <div class="message-text">
-          <input type="text" class="form-control mt-2" placeholder="Write Your Message Here">
-        </div>
-        <hr>
-        <input type="submit" value="Send" class="btn btn-primary form-control mt-2">
+        <form action="{% url 'body' %}" method="post">
+          {% csrf_token %}
+          <div class="message-text">
+            <input type="text" name="message" class="form-control mt-2" placeholder="Write Your Message Here">
+          </div>
+          <hr>
+          <input type="submit" value="Send" class="btn btn-primary form-control mt-2">
+        </form>
       </div>
     </div>
   </div>
 </div>
-{% endblock %}
+
+{% endblock content %}
